@@ -1,0 +1,187 @@
+<html>
+<head>
+<style>
+#main
+{
+	height:90%;
+	width:90%;
+	border:1px solid black;
+	margin:auto;
+	margin-top:40px;
+	background-color:#331938;
+	box-shadow:2px 1px 5px gray;
+}
+h1
+{
+	color:white;
+}
+p
+{
+	color:white;
+}
+#chooseSong
+{
+	height:80%;
+	width:20%;
+	margin-left:40px;
+	margin-top:40px;
+	box-shadow:2px 11px 15px #a251b0;
+	border-radius:20px;
+	float:left;
+}
+#container
+{
+	height:80%;
+	width:50%;
+	
+	margin-top:40px;
+	float:left;
+}
+#fav
+{
+	height:80%;
+	width:20%;
+	margin-top:40px;
+	border-radius:20px;
+	box-shadow:2px 11px 15px #a251b0;
+	float:left;
+}
+#webTitle
+{
+	height:30%;
+	width:100%;
+	box-shadow:2px 1px 5px gray;
+	text-align:center;
+}
+.song
+{
+	height:50%;
+	width:30%;
+	margin-top:30px;
+	box-shadow:2px 11px 15px #a251b0;
+	border-radius:20px;
+	float:left;
+	margin-left:15px;
+}
+.songImg
+{
+	height:60%;
+	width:100%;
+}
+p
+{
+	text-align:center;
+	font-weight:bold;
+}
+#songs
+{
+	height:50%;
+	width:80%;
+	box-shadow:2px 1px 5px gray;
+	margin-left:20px;
+	margin-top:20px;
+	
+}
+#s
+{
+	height:100%;
+	width:100%;
+}
+#play
+{
+	height:20%;
+	width:80%;
+	margin-left:20px;
+	margin-top:20px;
+	box-shadow:2px 1px 5px gray;
+}
+button
+{
+	height:30%;
+	width:70%;
+	
+	margin-left:15%;
+}
+#p1
+{
+	height:30px;
+	width:30px;
+	margin-top:10px;
+	margin-left:10px;
+}
+#playButton
+{
+	height:50px;
+	width:50px;
+	box-shadow:2px 1px 5px gray;
+	margin:auto;
+	border-radius:25px;
+	
+}
+#demo
+{
+	height:100px;
+	width:100px;
+	box-shadow:2px 1px 5px gray;
+}
+</style>
+<script>
+	var song=["Kokkarakko","Sha La La","Appadipodu"];
+	var img=["song1.jpg","song2.jpg","song3.jpg"];
+	
+	var a;
+	function play() {
+   		 var songs = ["Kokkarakko.mp3", "Sha La La.mp3", "Appadipodu.mp3"];
+  		  console.log(a);
+  		  if (a>= 0 && a < songs.length) {
+     		   audio.src = songs[a];
+       		 audio.play();
+      		 document.getElementById("p1").style.backgroundImage = "none";
+               		document.getElementById("p1").src = "pause.png";
+    		} 
+		else {
+      		  console.error('Invalid song index:', a);
+   		 }
+		}
+	function addFav() {
+var div = document.getElementsByTagName('div'),
+div.id="demo";
+    var p = document.createElement("p");
+    p.innerHTML = 'I am p Tag';
+    div[0].append(p);
+	
+}
+
+	
+	function chooseSong(index)
+	{
+		console.log(".............");
+		a=index;
+		document.getElementById("s").src =img[index];
+		console.log(a);
+	}
+</script>
+</head>
+<body>
+	<div id="main">
+	<div id="chooseSong">
+	<div id="songs"><img src="song1.jpg" id="s"></div>
+	<div id="play">	
+	<div id="playButton">
+	<img src="play.png" id="p1" onclick="play()">
+	</div>
+ <audio id="audio" src="Kokkarakko.mp3"></audio>
+	<br>
+<button onclick="addFav()">ADD FAVOURITE</button></div>
+	</div>
+	<div id="container">
+	<div id="webTitle"><h1>PLAY YOUR MUSIC</h1></div>
+         	<div class="song" onclick="chooseSong(0)"><img src="song1.jpg" class="songImg"><p>Kokkarakko</p></div>
+	<div class="song"  onclick="chooseSong(1)"><img src="song2.jpg" class="songImg"><p>Sha La La</p></div>
+	<div class="song"  onclick="chooseSong(2)"><img src="song3.jpg" class="songImg"><p>Appadi Podu</p></div>
+	</div>
+	<div id="fav"><h1>Favourite Songs</h1></div>
+	</div>
+</div>
+</body>
+</html>
