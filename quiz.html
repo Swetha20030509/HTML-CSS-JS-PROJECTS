@@ -1,0 +1,170 @@
+<html>
+<head>
+<style>
+#main
+{
+	height:550px;
+	width:500px;
+	margin:auto;
+	background-color:#670f73;
+	position:relative;
+}
+#question
+{
+	height:20px;
+	width:300px;
+	margin:auto;
+	border-radius:30px;
+	margin-top:-60px;
+	text-align:center;
+	padding:60px;
+	color:white;
+	font-size:25px;
+	background-color:#b667c0;
+	  box-shadow: 10px 10px 5px #a743b6;
+	
+}
+#questionNo
+{
+	height:90px;
+	width:90px;
+	border:1px solid black;
+	border-radius:60px;
+	margin:auto;
+	margin-top:30px;
+	text-align:center;
+	font-size:30px;
+	padding:10px;
+	background-color:#b667c0;
+	
+}
+#option
+{
+	height:300px;
+	width:400px;
+	  box-shadow: 10px 10px 5px #a743b6;
+	margin:auto;
+	margin-top:20px;
+	background-color:#b667c0;
+	border-radius:30px;
+}
+.choose
+{
+	height:50px;
+	width:300px;
+	border-radius:20px;
+	margin:auto;
+	margin-left:50px;
+	margin-top:40px;
+	text-align:center;
+	border:1px solid #a743b6;
+
+	
+}
+#score{
+	height:300px;
+	width:400px;
+	margin:auto;
+	position:absolute;
+	background-color:#9b49a6;
+	color:White;
+	 box-shadow: 10px 10px 8px #c18bc9;
+	margin-top:100px;
+	margin-left:50px;
+}
+</style>
+<script>
+	var questions=[" What is the size of byte variable?", "What is the default value of Boolean variable?"];
+	var options=["8 bit","16 bit","32 bit","true","false","null"];
+	var answer=["8 bit","false"];
+	var count=0;
+	var questionNo=1;
+	function changeQuestion()
+	{
+	document.getElementById("questionNo").innerHTML=questionNo;
+	if(questionNo<=questions.length)
+	{
+	document.getElementById("choose"+1).style.backgroundColor="white";
+	document.getElementById("choose"+2).style.backgroundColor="white";
+	document.getElementById("choose"+3).style.backgroundColor="white";
+	questionNo = Math.floor((Math.random() * 2) + 1);
+	//console.log(x+".........");
+	document.getElementById("question").innerHTML = questions[questionNo-1];
+	choose(questionNo);
+		}
+	else{
+	
+		document.getElementById("con").style.display="none";
+		document.getElementById("co").innerHTML="Score:"+count;
+		document.getElementById("score").style.display="block";
+	    }
+	}
+	function choose(no)
+	{
+		var a=1;
+		//no=no-1;
+		for(var i=((no*3)-3);i<((no*3)-3)+3;i++)
+		{
+			 var inputId = "choose" + a;
+           document.getElementById(inputId).value = options[i];
+			a++;
+		}
+	}
+	function correct(option)
+	{
+		//console.log(option);
+		var elementId = "choose" + option;
+var ans = document.getElementById(elementId).value;
+		if(ans==answer[questionNo-1])
+		{
+			document.getElementById("choose"+option).style.backgroundColor="green";
+			count++;
+		}
+		else
+		{
+			 document.getElementById(elementId).style.backgroundColor="red";
+			// console.log();
+			 if(answer[questionNo-1]==document.getElementById("choose"+1).value)
+			 {
+				
+			  document.getElementById("choose"+1).style.backgroundColor="green";
+			  }
+			  else  if(answer[questionNo-1]==document.getElementById("choose"+2).value)
+			  {
+			 
+			  document.getElementById("choose"+2).style.backgroundColor="green";
+			  }
+			  else if(answer[questionNo-1]==document.getElementById("choose"+3).value)
+			  {
+			 
+			   document.getElementById("choose"+3).style.backgroundColor="green";
+			  }
+		}
+		console.log(count);
+		questionNo++;
+		setTimeout(changeQuestion, 2000);
+	}
+</script>
+</head>
+<body onload="changeQuestion()">
+	<div id="main">
+	<div id="score" style="display:none">
+	<h1 style="text-align:center">The Result is</h1>
+	<h1 id="co" style="text-align:center">Score:</h1>
+		</div>
+		<div id="con">
+		<div id="questionNo"></div>
+		
+		<div id="question"></div>
+		<div id="option">
+			<input type="text"  class="choose" id="choose1" onclick="correct(1)" readonly>
+			<br>
+			<input type="text"  class="choose" id="choose2" onclick="correct(2)" readonly>
+			<br>
+			<input type="text" class="choose" id="choose3" onclick="correct(3)" readonly>	
+	
+	</div>
+	</div>
+	</div>
+</body>
+</html>
